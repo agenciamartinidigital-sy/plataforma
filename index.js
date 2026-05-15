@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 8080;
+const PORT = 8080;
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -26,6 +26,6 @@ app.get("/:nome/:lang", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log("App rodando na porta " + port);
+app.listen(PORT, () => {
+  console.log(`App rodando na porta ${PORT}`);
 });
