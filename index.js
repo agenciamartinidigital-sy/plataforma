@@ -1,9 +1,9 @@
-const express = require("express");
+import express, { static } from "express";
 const app = express();
 const PORT = 8080;
 
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(static("public"));
 
 app.get("/:nome/:lang", (req, res) => {
   let nome = req.params.nome;
