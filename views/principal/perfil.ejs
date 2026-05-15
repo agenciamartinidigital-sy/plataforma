@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+    <style>
+      body {
+        background-color: #eee;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
     <h1>Perfil usuário</h1>
-</body>
+    <%= nome %><br/>
+    <%= lang %><br/>
+    <%= empresa %>
+    <% if(msg == true){ %>
+        <h3>Isso é uma Mensagem de Erro</h3>
+    <%}%>
+    <br />
+  </body>
 </html>

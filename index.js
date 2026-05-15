@@ -4,8 +4,16 @@ const port = 8080;
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/:nome/:lang", (req, res) => {
+  const nome = req.params.nome;
+  const lang = req.params.lang;
+  const exibirMsg = true;
+  res.render("principal/perfil", {
+    nome,
+    lang,
+    empresa: "Nexxum",
+    msg: exibirMsg,
+  });
 });
 
 app.listen(port, () => {
