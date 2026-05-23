@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 const connection = require("./database/database");
+const Pergunta = require("./database/Pergunta");
 // Database
+
 connection
   .authenticate()
   .then(() => {
@@ -15,12 +17,19 @@ connection
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.render("index");
+  Pergunta.findAll({
+    raw: true,
+    attribuites: ["titulo", "descricao"],
+    order: [["createdAt ", "DESC"]],
+  }).then((perguntas) => {
+    res.render("index", {
+      perguntas: perguntas,
+    });
+  });
 });
 
 app.get("/perguntar", (req, res) => {
@@ -30,7 +39,13 @@ app.get("/perguntar", (req, res) => {
 app.post("/salvarpergunta", (req, res) => {
   let titulo = req.body.titulo;
   let descricao = req.body.descricao;
-  res.send(`Formulário recebido! Título: ${titulo} | Descrição: ${descricao}`);
+  Pergunta.create({
+    titulo: titulo,
+    descricao: descricao,
+  }).then(() => {
+    res.redirect("/");
+  });
+  // res.send(`Formulário recebido! Título: ${titulo} | Descrição: ${descricao}`);
 });
 
 app.listen(PORT, () => {
