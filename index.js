@@ -15,16 +15,16 @@ connection
   });
 
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static("public")); // middleware
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: false })); // middleware
+app.use(express.json()); // middleware
 
 app.get("/", (req, res) => {
   Pergunta.findAll({
     raw: true,
     attribuites: ["titulo", "descricao"],
-    order: [["createdAt ", "DESC"]],
+    order: [["createdAt", "DESC"]],
   }).then((perguntas) => {
     res.render("index", {
       perguntas: perguntas,
