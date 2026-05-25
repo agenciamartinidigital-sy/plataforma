@@ -1,3 +1,4 @@
+require("mysql2"); // força o bundler a incluir o mysql2
 const Sequelize = require("sequelize");
 
 const connection = new Sequelize(
@@ -9,7 +10,7 @@ const connection = new Sequelize(
     port: process.env.DB_PORT || 3306,
     dialect: "mysql",
     logging: false,
-  }
+  },
 );
 
 module.exports = connection;
