@@ -92,6 +92,10 @@ app.post("/responder", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`App rodando na porta ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`App rodando na porta ${PORT}`);
+  });
+}
+
+module.exports = app;
