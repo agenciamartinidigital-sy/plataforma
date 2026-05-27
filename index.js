@@ -9,10 +9,10 @@ const Resposta = require("./database/Resposta");
 connection
   .authenticate()
   .then(() => {
-    console.log("Conexão feita com o banco de dados!");
+    console.log("Conexão feita com o Banco de Datos");
   })
-  .catch((msgErro) => {
-    console.log(msgErro);
+  .catch((msgError) => {
+    console.log(msgError);
   });
 
 app.set("view engine", "ejs");
